@@ -11,6 +11,5 @@
       "matches": ["https://nextpayments.my.salesforce.com/*"],
       "js": ["case_create.js"],
       "run_at": "document_idle"
-   }],
-   "permissions": ["clipboardRead"]
+   }]
 }
