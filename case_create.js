@@ -16,6 +16,9 @@ function create_case(i, v) {
 	// status.value = "Awaiting Helpdesk";
 
 	if(v.toLowerCase().includes("roll")) assess.value = "Receipt Roll";
+	if(v.toLowerCase().includes("AH")) assess.value = "Card Holder Query";
+	if(v.toLowerCase().includes("jam")) assess.value = "Dispenser (CDU)";
+	if(v.toLowerCase().includes("cassette")) assess.value = "Cassette";
 }
 
 function caseEdit(i, v) {
