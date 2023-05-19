@@ -16,7 +16,8 @@ function create_case(i, v) {
 	// status.value = "Awaiting Helpdesk";
 
 	if(v.toLowerCase().includes("roll")) assess.value = "Receipt Roll";
-	if(v.toLowerCase().includes("AH")) assess.value = "Card Holder Query";
+	if(v.toLowerCase().includes("CH")) assess.value = "Card Holder Query";
+	if(v.toLowerCase().includes("ard holder")) assess.value = "Card Holder Query";
 	if(v.toLowerCase().includes("jam")) assess.value = "Dispenser (CDU)";
 	if(v.toLowerCase().includes("cassette")) assess.value = "Cassette";
 }
@@ -30,6 +31,8 @@ function caseEdit(i, v) {
 	if(v.toLowerCase().includes("attended")) reason.value = 'Technician Resolved';
 	if(v.toLowerCase().includes("on: ")) reason.value = 'Technician Resolved';
 	if(v.toLowerCase().includes("duplicate")) reason.value = 'Duplicate';
+	if(v.toLowerCase().includes("site resolved")) reason.value = 'Merchant Resolved';
+	if(v.toLowerCase().includes("merchant resolved")) reason.value = 'Merchant Resolved';
 }
 
 document.onclick = (event) => {
