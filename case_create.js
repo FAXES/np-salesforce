@@ -48,7 +48,14 @@ document.onclick = (event) => {
 				let list = textarea.addEventListener("keyup", (event) => {
 					caseEdit(iframe, textarea.value);
 				});
-				// listeners.push(list)
+			}
+		} else if(iframe.querySelectorAll('h1.pageType')[0]?.innerText === "Job Edit") {
+			let jobName = iframe.getElementById("Name");
+			if(jobName) {
+				let list = jobName.addEventListener("keyup", (event) => {
+					let assignTech = iframe.getElementById("CF00N6F00000Dwsjn");
+					if(jobName.value.toLowerCase().includes("flm")) assignTech.value = "TN-0136";
+				});
 			}
 		}
 	}
