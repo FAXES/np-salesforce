@@ -3,6 +3,9 @@ Date.prototype.today = function () { return ((this.getDate() < 10)?"0":"") + thi
 Date.prototype.timeNow = function(){ return ((this.getHours() < 10)?"0":"") + ((this.getHours()>12)?(this.getHours()-12):this.getHours()) +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() + ((this.getHours()>12)?(' PM'):' AM'); };
 // let listeners = [];
 
+let externalEmail = 'CAUTION: This email originated outside Next Payments. Do not click links or open attachments unless you recognize the sender and know the content is safe. Report any suspicious emails'
+
+
 function create_case(i, v) {
 	status = i.getElementById("cas7");
 	origin = i.getElementById("cas11");
@@ -14,12 +17,17 @@ function create_case(i, v) {
 	origin.value = "Phone";
 	follow.value = `${new Date(time).today()} ${new Date(time).timeNow()}`;
 	// status.value = "Awaiting Helpdesk";
+	if(v.includes(externalEmail)) v = v.replace(externalEmail, '');
 
 	if(v.toLowerCase().includes("roll")) assess.value = "Receipt Roll";
 	if(v.toLowerCase().includes("CH")) assess.value = "Card Holder Query";
 	if(v.toLowerCase().includes("ard holder")) assess.value = "Card Holder Query";
 	if(v.toLowerCase().includes("jam")) assess.value = "Dispenser (CDU)";
 	if(v.toLowerCase().includes("cassette")) assess.value = "Cassette";
+}
+
+function commentManager(i, ta) {
+	if(ta.value.includes(externalEmail)) ta.value = ta.value.replace(externalEmail, '');
 }
 
 function caseEdit(i, v) {
@@ -64,6 +72,13 @@ document.onclick = (event) => {
 					let assignTech = iframe.getElementById("CF00N6F00000Dwsjn");
 					if(!assignTech) return;
 					if(jobName.value.toLowerCase().includes("flm")) assignTech.value = "TN-0136";
+				});
+			}
+		} else if(iframe.querySelectorAll('h1.pageType')[0]?.innerText === "Comments") {
+			let commentTA = iframe.getElementById("CommentBody");
+			if(commentTA) {
+				let list = commentTA.addEventListener("keyup", (event) => {
+					commentManager(iframe, commentTA)
 				});
 			}
 		}
